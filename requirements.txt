@@ -2,3 +2,4 @@ sqlalchemy
 sqlcipher3
 pymysql
 sqlacodegen
+tqdm

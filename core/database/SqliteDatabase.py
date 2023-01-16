@@ -4,10 +4,14 @@ from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import Session
 
 class SqliteDatabase(DB):
-    def connect(self, dbPath: str, password: str):
+    def connect(self, dbPath: str, password: str = None):
         if self.engine is not None:
             return self.engine
-        uri = f"sqlite+pysqlcipher://:{password}@/{dbPath}"
+        uri = ""
+        if password is None or password == "":
+            uri = f"sqlite:///{dbPath}"
+        else:
+            uri = f"sqlite+pysqlcipher://:{password}@/{dbPath}"
         try:
             print(f"database path: {dbPath}")
             engine = create_engine(uri)

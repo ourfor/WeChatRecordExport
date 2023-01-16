@@ -1,5 +1,5 @@
 # coding: utf-8
-from sqlalchemy import Column, Index, Integer, LargeBinary, Text, text
+from sqlalchemy import Column, Index, Integer, BigInteger, LargeBinary, Text, text
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -73,7 +73,7 @@ class ChatRecordMobileModel(Base):
     ImgStatus = Column(Integer, server_default=text("0"))
     MesLocalID = Column(Integer, primary_key=True)
     Message = Column(Text)
-    MesSvrID = Column(Integer, index=True, server_default=text("0"))
+    MesSvrID = Column(BigInteger, index=True, server_default=text("0"))
     Status = Column(Integer, index=True, server_default=text("0"))
     TableVer = Column(Integer, server_default=text("1"))
     Type = Column(Integer)

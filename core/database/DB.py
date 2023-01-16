@@ -48,7 +48,18 @@ class DB():
         table = modelType.__table__
         sql = select(modelType)
         return session.scalars(sql)
-        
+    
+    def count(self, modelType: T)-> int:
+        session = self.session
+        if session is None:
+            return 0
+        count = session.query(modelType).count()
+        return count
+    
+    def commit(self):
+        session = self.session
+        if session is not None:
+            session.commit() 
     
     def close(self):
         session = self.session
