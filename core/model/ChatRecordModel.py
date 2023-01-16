@@ -1,5 +1,5 @@
 # coding: utf-8
-from sqlalchemy import Column, Index, Integer, BigInteger, LargeBinary, Text, text
+from sqlalchemy import Column, Index, Integer, BigInteger, LargeBinary, Text, TEXT, text
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -90,7 +90,7 @@ class ChatHelloMobileModel(Base):
     Des = Column(Integer)
     ImgStatus = Column(Integer, server_default=text("0"))
     MesLocalID = Column(Integer, primary_key=True)
-    Message = Column(Text)
+    Message = Column(TEXT)
     MesSvrID = Column(Integer, server_default=text("0"))
     OpCode = Column(Integer, server_default=text("0"))
     Status = Column(Integer, index=True, server_default=text("0"))

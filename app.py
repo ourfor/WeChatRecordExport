@@ -10,7 +10,13 @@ from core.model.ChatRecordModel import ChatRecordMobileModelForTableName, ChatRe
 import argparse
 import os
 from tqdm import tqdm
-from typing import List
+import configparser
+from typing import List, Dict
+
+def config() -> Dict:
+    parser = configparser.ConfigParser()
+    parser.read("config.ini")
+    return parser
 
 def allDatabaseFilePath(path: str, isMobile: bool = False) -> List[str]:
     dbPaths = []
@@ -44,10 +50,11 @@ def main():
         return
     
     mysqlDB = MysqlDatabase()
+    conf = config()
     mysqlDB.connect(
-        host="db.test.com",
-        username="user",
-        password="passwd"
+        host=conf["MYSQL"]["host"],
+        username=conf["MYSQL"]["username"],
+        password=conf["MYSQL"]["password"]
     )
     mysqlDB.createTable(ChatModel)
     isMobile = True
