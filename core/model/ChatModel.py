@@ -1,15 +1,11 @@
-from sqlalchemy import Column, String, Integer, DateTime, Boolean, SMALLINT, BigInteger
-from sqlalchemy.orm import declarative_base
-from typing import Dict
+from sqlalchemy import Column
+from sqlalchemy.sql.sqltypes import NullType
+from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
+metadata = Base.metadata
 class ChatModel(Base):
     __tablename__ = 'sqlite_sequence'
-    name = Column(String(255), primary_key=True)
-    seq = Column(Integer)
-    
-    def build(self, dict: Dict):
-        for key, value in dict.items():
-            if hasattr(self, key):
-                setattr(self, key, value)
-        return self
+    metadata
+    name = Column(NullType, primary_key=True)
+    seq = Column(NullType)

@@ -21,20 +21,6 @@ def main():
     path = args.path
     password = args.password
     password = f"x'{password}'"
-    # db = SqliteDatabase()
-    # fullPath = "/Users/ourfor/Tmp/WeChat/msg_1.db"
-    # password = "x'FE98B26049984EB8A4F3D89396AF8C25B8BC6655CC1B455BB29C0F0E6A6F54D1'"
-    # db.connect(fullPath, password)
-    # models = db.find(ChatModel)
-    # for model in models:
-    #     tableName = model.name
-    #     if tableName.startswith("Chat_Chat"):
-    #         continue
-    #     ChatRecordModelType = ChatRecordModelForTableName(tableName)
-    #     records = db.find(ChatRecordModelType)
-    #     for record in records:
-    #         print(record.msgCreateTime) 
-    
       
     if path is None:
         return
