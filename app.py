@@ -54,7 +54,9 @@ def main():
     mysqlDB.connect(
         host=conf["MYSQL"]["host"],
         username=conf["MYSQL"]["username"],
-        password=conf["MYSQL"]["password"]
+        password=conf["MYSQL"]["password"],
+        database=conf["MYSQL"]["database"],
+        port=int(conf["MYSQL"]["port"])
     )
     mysqlDB.createTable(ChatModel)
     isMobile = True
