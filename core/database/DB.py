@@ -61,6 +61,11 @@ class DB():
         if session is not None:
             session.commit() 
     
+    def rollback(self):
+        session = self.session
+        if session is not None:
+            session.rollback()
+    
     def close(self):
         session = self.session
         if session is not None:

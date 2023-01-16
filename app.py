@@ -86,6 +86,7 @@ def main():
                             mysqlDB.save(copy.copy(record))
                             completed = completed + 1
                         except Exception:
+                            mysqlDB.rollback()
                             failed = failed + 1
                         finally:
                             pbar.update(1)
