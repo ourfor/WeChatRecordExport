@@ -76,11 +76,19 @@ def main():
                 size = sqliteDB.count(ChatRecordMobileModelType)
                 print(f"⌛ 开始导出 {tableName} 📝 {size}条")
                 with tqdm(total=size) as pbar:
+                    completed = 0
+                    failed = 0
                     for record in records:
                         pbar.set_description(f"⏰ {record.CreateTime}")
-                        mysqlDB.save(copy.copy(record))
-                        pbar.update(1)
-            
+                        try:
+                            mysqlDB.save(copy.copy(record))
+                            completed = completed + 1
+                        except Exception:
+                            failed = failed + 1
+                        finally:
+                            pbar.update(1)
+                    
+                    print(f"👌 总共 {size} 条, 成功 {completed} 失败: {failed}")
             # else:
             #     ChatRecordModelType = ChatRecordModelForTableName(tableName)
             #     records = sqliteDB.find(ChatRecordModelType)
